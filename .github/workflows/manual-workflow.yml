@@ -1,0 +1,35 @@
+name: Manual Workflow with Two Jobs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Use your desired Python version
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run the Python app
+        run: |
+          python your_app.py  # Replace with your script name
+
+      - name: List files
+        run: |
+          ls -al
+
+  list-files-only:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files
+        run: |
+          ls -al
